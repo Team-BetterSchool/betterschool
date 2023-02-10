@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_ENV='development' jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "seed": "node ./src/server/db/seed.js"
   },
   "eslintConfig": {
     "extends": [
