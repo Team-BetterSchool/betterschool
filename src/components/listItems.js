@@ -9,6 +9,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import EventIcon from '@mui/icons-material/Event';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 
 export const mainListItems = (
   <React.Fragment>
@@ -38,6 +39,12 @@ export const mainListItems = (
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
+        <EventNoteIcon />
+      </ListItemIcon>
+      <ListItemText primary='Schedule' />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
         <EventIcon />
       </ListItemIcon>
       <ListItemText primary='Events' />
@@ -52,16 +59,17 @@ export const secondaryListItems = (
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary='Teachers' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
         <SchoolIcon />
       </ListItemIcon>
       <ListItemText primary='Classes' />
     </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary='Teachers' />
+    </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
