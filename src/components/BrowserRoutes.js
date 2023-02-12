@@ -1,24 +1,9 @@
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import ErrorPage from './ErrorPage';
 import SignUp from './SignUp';
 
 // mui.com/material-ui/guides/routing/
-
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Dashboard />,
-//     errorElement: <ErrorPage />,
-//     children: [
-//       {
-//         path: 'students/:studentId',
-//         element: <Student />,
-//       },
-//     ],
-//   },
-// ]);
 
 const BrowserRoutes = () => {
   return (

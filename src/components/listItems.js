@@ -37,11 +37,7 @@ ListItemLink.propTypes = {
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemLink
-      to='/dashboard'
-      primary='Dashboard'
-      icon={<DashboardIcon />}
-    />
+    <ListItemLink to='/' primary='Dashboard' icon={<DashboardIcon />} />
     <ListItemLink
       to='/assignments'
       primary='Assignments'
