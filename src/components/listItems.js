@@ -9,39 +9,48 @@ import PeopleIcon from '@mui/icons-material/People';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import EventIcon from '@mui/icons-material/Event';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
+
+const Link = React.forwardRef(function Link(itemProps, ref) {
+  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
+});
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItemButton component={Link} to={to}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={primary} />
+      </ListItemButton>
+    </li>
+  );
+}
+
+ListItemLink.propTypes = {
+  icon: PropTypes.element,
+  primary: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+};
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary='Dashboard' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Assignments' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary='Students' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <NotificationsIcon />
-      </ListItemIcon>
-      <ListItemText primary='Notifications' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <EventIcon />
-      </ListItemIcon>
-      <ListItemText primary='Events' />
-    </ListItemButton>
+    <ListItemLink to='/' primary='Dashboard' icon={<DashboardIcon />} />
+    <ListItemLink
+      to='/assignments'
+      primary='Assignments'
+      icon={<AssignmentIcon />}
+    />
+    <ListItemLink to='/students' primary='Students' icon={<PeopleIcon />} />
+    <ListItemLink
+      to='/notifications'
+      primary='Notifications'
+      icon={<NotificationsIcon />}
+    />
+    <ListItemLink to='/schedule' primary='Schedule' icon={<EventNoteIcon />} />
+    <ListItemLink to='/events' primary='Events' icon={<EventIcon />} />
   </React.Fragment>
 );
 
@@ -50,23 +59,8 @@ export const secondaryListItems = (
     <ListSubheader component='div' inset>
       Placeholder
     </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary='Teachers' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <SchoolIcon />
-      </ListItemIcon>
-      <ListItemText primary='Classes' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Forms' />
-    </ListItemButton>
+    <ListItemLink to='/classes' primary='Classes' icon={<SchoolIcon />} />
+    <ListItemLink to='/teachers' primary='Teachers' icon={<PeopleIcon />} />
+    <ListItemLink to='/forms' primary='Forms' icon={<AssignmentIcon />} />
   </React.Fragment>
 );
