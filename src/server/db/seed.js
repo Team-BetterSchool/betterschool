@@ -1,9 +1,18 @@
 const db = require(".").db;
 // const Student = require("./models/Student");
 // const Teacher = require("./models/Teacher");
+const {faker} = require('@faker-js/faker')
 
-const COLLECTIONS = ["teachers", "students", "classes"];
+const COLLECTIONS = ["teachers", "students", "classes","assignments"];
 
+const createTeacher = () => {
+  return   {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    username: faker.helpers.unique(faker.random.numeric),
+    password: ,
+  },
+}
 const TEACHER_DATA = [
   {
     firstName: "dakota",
