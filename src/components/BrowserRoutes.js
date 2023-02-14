@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import ErrorPage from './ErrorPage';
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 // mui.com/material-ui/guides/routing/
 
@@ -9,8 +10,9 @@ const BrowserRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Dashboard />} />
-      {/* <Route path='/login' element={<Login />} /> */}
       <Route path='/signup' element={<SignUp />} />
+      <Route path='/signin' element={<SignIn />} />
+      {/* <Route path='/login' element={<Login />} /> */}
       {/* <Route path='/schedule' element={<Schedule />} />
       <Route exact path='/assignments' element={<Assignments />} />
       <Route exact path='/students' element={<Students />} />
