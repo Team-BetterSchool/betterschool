@@ -1,10 +1,46 @@
-import db from "./index.js";
+const db = require(".").db;
+// const Student = require("./models/Student");
+// const Teacher = require("./models/Teacher");
 
 const COLLECTIONS = ["teachers", "students", "classes"];
 
-const TEACHER_DATA = [{}]; // TODO add seed data
+const TEACHER_DATA = [
+  {
+    firstName: "dakota",
+    lastName: "fabro",
+    username: "dakotafabro",
+    password: "pw",
+  },
+  {
+    firstName: "fi",
+    lastName: "murray",
+    username: "fimurray",
+    password: "pw",
+  },
+]; // TODO add seed data
 
-const STUDENT_DATA = [{}]; // TODO add seed data
+const STUDENT_DATA = [
+  {
+    firstName: "koda",
+    lastName: "fabro",
+    username: "kodafabro",
+    password: "pw",
+    gradeLevel: 3,
+    birthday: new Date("1992-05-11"),
+    parent1_name: "dennis",
+    parent1_phone: 9999999999,
+  },
+  {
+    firstName: "fiona",
+    lastName: "murray",
+    username: "fionamurray",
+    password: "pw",
+    gradeLevel: 3,
+    birthday: new Date("1998-06-03"),
+    parent1_name: "bob",
+    parent1_phone: 9999999999,
+  },
+]; // TODO add seed data
 
 const CLASS_DATA = [{}]; // TODO add seed data
 
@@ -24,15 +60,15 @@ const seed = async () => {
   try {
     COLLECTIONS.forEach(async (collection) => await db.collection(collection));
 
-    const teacherSeed = await db.collection(
-      "teachers".insertMany(TEACHER_DATA)
-    );
+    const teacherSeed = await db
+      .collection("teachers")
+      .insertMany(TEACHER_DATA);
 
-    const studentSeed = await db.collection(
-      "teachers".insertMany(STUDENT_DATA)
-    );
+    const studentSeed = await db
+      .collection("students")
+      .insertMany(STUDENT_DATA);
 
-    const classSeed = await db.collection("teachers".insertMany(CLASS_DATA));
+    const classSeed = await db.collection("classes").insertMany(CLASS_DATA);
 
     console.log("Database seeded 🌱");
 
@@ -49,14 +85,24 @@ const seed = async () => {
   }
 };
 
-const result = [];
+// const getCollections = () => {
+//   const result = [];
 
-await db.listCollections().forEach((collection) => {
-  result.push(collection.name);
-});
+//   const collections = db.listCollections();
 
-if (result.includes("teachers")) {
-  drop();
-}
+//   for (let i = 0; i < collections.length; i++) {
+//     result.push(collections[i].name);
+//   }
+
+//   return result;
+// };
+
+// const collectionResults = getCollections();
+
+// console.log(collectionResults);
+
+// if (collectionResults.includes("teachers")) {
+//   drop();
+// }
 
 seed();
