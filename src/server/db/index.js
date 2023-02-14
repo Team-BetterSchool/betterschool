@@ -1,9 +1,10 @@
-import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
+const MongoClient = require("mongodb").MongoClient;
+const dotenv = require("dotenv");
+// const mongoose = require("mongoose");
 
 dotenv.config();
 
-export const client = new MongoClient(process.env.MONGO_URI);
-export const db = client.db(process.env.DB_NAME);
+const client = new MongoClient(process.env.MONGO_URI);
+const db = client.db(process.env.DB_NAME);
 
-export default db;
+module.exports = { client, db };
