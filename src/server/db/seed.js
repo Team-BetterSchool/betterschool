@@ -1,48 +1,41 @@
 const db = require(".").db;
 // const Student = require("./models/Student");
 // const Teacher = require("./models/Teacher");
+const {faker} = require('@faker-js/faker')
 
-const COLLECTIONS = ["teachers", "students", "classes"];
+const COLLECTIONS = ["teachers", "students", "classes","assignments"];
 
-const TEACHER_DATA = [
-  {
-    firstName: "dakota",
-    lastName: "fabro",
-    username: "dakotafabro",
-    password: "pw",
-  },
-  {
-    firstName: "fi",
-    lastName: "murray",
-    username: "fimurray",
-    password: "pw",
-  },
-]; // TODO add seed data
+const createTeacher = () => {
+  return   {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    username: faker.random.numeric(7),
+  }
+}
 
-const STUDENT_DATA = [
-  {
-    firstName: "koda",
-    lastName: "fabro",
-    username: "kodafabro",
-    password: "pw",
-    gradeLevel: 3,
-    birthday: new Date("1992-05-11"),
-    parent1_name: "dennis",
-    parent1_phone: 9999999999,
-  },
-  {
-    firstName: "fiona",
-    lastName: "murray",
-    username: "fionamurray",
-    password: "pw",
-    gradeLevel: 3,
-    birthday: new Date("1998-06-03"),
-    parent1_name: "bob",
-    parent1_phone: 9999999999,
-  },
-]; // TODO add seed data
+const createStudent = () => {
+  return   {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    username: faker.random.numeric(7),
+    gradeLevel: faker.helpers.arrayElement(1,2,3,4,5),
+    birthday: faker.date.between('2010-01-01T00:00:00.000Z', '2018-01-01T00:00:00.000Z'),
+    parent1_name: faker.name.fullName(),
+    parent1_phone: faker.phone.number(),
+  }
+}
 
-const CLASS_DATA = [{}]; // TODO add seed data
+
+const createUsers = (numUsers = 5,cb) => {
+  return new Array(numUsers)
+    .fill(undefined)
+    .map(cb);
+}
+
+let fakeTeachers = createUsers(5,createTeacher)
+let fakeStudents = createUsers(5,createStudent)
+let fakeClasses = [{}]
+
 
 const drop = async () => {
   try {
@@ -62,13 +55,13 @@ const seed = async () => {
 
     const teacherSeed = await db
       .collection("teachers")
-      .insertMany(TEACHER_DATA);
+      .insertMany(fakeTeachers);
 
     const studentSeed = await db
       .collection("students")
-      .insertMany(STUDENT_DATA);
+      .insertMany(fakeStudents);
 
-    const classSeed = await db.collection("classes").insertMany(CLASS_DATA);
+    const classSeed = await db.collection("classes").insertMany(fakeClasses);
 
     console.log("Database seeded 🌱");
 
